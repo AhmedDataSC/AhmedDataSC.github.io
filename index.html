@@ -14,6 +14,14 @@
             --card-bg: #ffffff;
         }
 
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #f8f9fa;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,6 +34,20 @@
             line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--card-bg);
+            padding: 0.8rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -53,99 +75,208 @@
         }
 
         .hero-section {
-            padding: 8rem 1rem 2rem;
+            padding: 10rem 1rem 2rem;
             text-align: center;
         }
 
-        .profile-photo {
+        .profile-container {
+            position: relative;
             width: 220px;
             height: 220px;
+            margin: 0 auto 2rem;
             border-radius: 50%;
             border: 4px solid var(--primary-color);
-            margin: 2rem auto;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .education-card {
+            background: var(--card-bg);
             padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: white;
-            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .experience-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-icons a {
+            font-size: 2rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-icons a:hover {
+            transform: scale(1.2);
         }
 
         footer {
             background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .profile-photo {
-                width: 180px;
-                height: 180px;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
+        <div class="profile-container">
+            <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
+        </div>
         <h1>Ahmed Raza Ansari</h1>
-        <p>Data Science & AI Student at NED University</p>
+        <p>Data Science Fresh Graduate | Seeking Opportunities</p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="education-card">
+            <h2>Education</h2>
+            <div style="margin-top: 1.5rem;">
+                <h3>NED University of Engineering & Technology</h3>
+                <p>Bachelor's in Data Science & Artificial Intelligence</p>
+                <p>2022 - Present (Currently Enrolled)</p>
+                
+                <h3 style="margin-top: 1.5rem;">University of Karachi</h3>
+                <p>Bachelor of Commerce (B.Com)</p>
+                <p>2019 - 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="experience-card">
+            <h2>Professional Experience</h2>
+            <div style="margin-top: 1.5rem;">
+                <h3>KPMG Pakistan</h3>
+                <p>Current Position: [Your Current Role]</p>
+                <p>Key Responsibilities:</p>
+                <ul>
+                    <li>Data analysis and reporting</li>
+                    <li>Financial modeling</li>
+                    <li>Business intelligence tasks</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <h2 style="text-align: center; margin: 2rem 0;">Featured Projects</h2>
-        <div class="project-grid">
+    <section id="projects" style="padding: 2rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Data Science Projects</h2>
+        <div style="max-width: 1000px; margin: 0 auto;">
             <div class="project-card">
                 <h3>Advanced House Price Prediction</h3>
-                <p>Machine learning model predicting real estate prices with 95% accuracy</p>
-                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" class="project-link" target="_blank">
-                    <i class="fab fa-github"></i> View on GitHub
+                <p>Regression model achieving 95% accuracy using ensemble methods</p>
+                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" target="_blank">
+                    <i class="fab fa-github"></i> View Code
                 </a>
             </div>
-
-            <div class="project-card">
-                <h3>Autoviz</h3>
-                <p>Automated data visualization tool for rapid EDA</p>
-                <a href="https://github.com/AhmedDataSC/Autoviz" class="project-link" target="_blank">
-                    <i class="fab fa-github"></i> View on GitHub
+            
+            <div class="project-card" style="margin-top: 1.5rem;">
+                <h3>Autoviz Automation Tool</h3>
+                <p>Automated EDA tool for quick data visualization</p>
+                <a href="https://github.com/AhmedDataSC/Autoviz" target="_blank">
+                    <i class="fab fa-github"></i> View Project
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Contact Section -->
+    <section id="contact" style="text-align: center; padding: 4rem 1rem;">
+        <h2>Let's Connect</h2>
+        <div class="contact-icons">
+            <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/AhmedDataSC" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:your.email@example.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="your-resume.pdf" download class="btn">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2024 Ahmed Raza Ansari. All rights reserved.</p>
+        <p>© 2024 Ahmed Raza Ansari | Seeking Data Science Opportunities</p>
     </footer>
+
+    <script>
+        // Dark/Light Mode Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', 
+                document.body.classList.contains('dark-theme') ? 'dark' : 'light'
+            );
+        }
+
+        // Apply saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
