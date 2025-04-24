@@ -14,7 +14,6 @@
             --card-bg: #ffffff;
         }
 
-        /* Dark Mode Variables */
         [data-theme="dark"] {
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
@@ -35,6 +34,9 @@
             line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Theme Toggle */
@@ -76,14 +78,11 @@
             font-weight: 500;
         }
 
-        nav a:hover {
-            background: var(--secondary-color);
-        }
-
         .section {
-            padding: 8rem 1.5rem 4rem;
+            padding: 8rem 1.5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            flex: 1;
         }
 
         .hero {
@@ -92,8 +91,8 @@
         }
 
         .profile-photo {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             border: 4px solid var(--primary-color);
             margin-bottom: 2rem;
@@ -117,72 +116,37 @@
             overflow: hidden;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--secondary-color);
-        }
-
-        .skills-chart {
+        .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
 
-        .skill-item {
+        .certification-card {
             background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        .skill-bar {
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            margin: 1rem 0;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--secondary-color);
-            width: 0;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section > * {
-            animation: fadeIn 0.6s ease forwards;
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            position: static;
         }
 
         @media (max-width: 768px) {
             .section {
                 padding: 6rem 1rem 2rem;
             }
-
-            nav ul {
-                gap: 1rem;
-            }
-
             .profile-photo {
-                width: 160px;
-                height: 160px;
+                width: 180px;
+                height: 180px;
             }
         }
     </style>
@@ -196,127 +160,4 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="section">
-        <div class="hero">
-            <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Ahmed Raza Ansari</h1>
-            <p style="font-size: 1.2rem; color: var(--secondary-color);">Data Scientist | AI Developer</p>
-            <div style="margin-top: 2rem;">
-                <a href="#projects" class="btn" style="background: var(--secondary-color);">View Projects</a>
-                <a href="#contact" class="btn" style="background: var(--primary-color);">Contact Me</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Featured Projects</h2>
-        <div class="project-grid">
-            <!-- Advanced House Price Prediction -->
-            <div class="project-card">
-                <h3>Advanced House Price Prediction</h3>
-                <p style="margin: 1rem 0; color: #666;">Machine learning model predicting real estate prices with 95% accuracy</p>
-                <div style="margin: 1.5rem 0;">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">EDA</span>
-                </div>
-                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" class="btn" target="_blank">
-                    <i class="fab fa-github"></i> Explore Code
-                </a>
-            </div>
-
-            <!-- Autoviz -->
-            <div class="project-card">
-                <h3>Autoviz</h3>
-                <p style="margin: 1rem 0; color: #666;">Automated data visualization tool for rapid EDA</p>
-                <div style="margin: 1.5rem 0;">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Matplotlib</span>
-                    <span class="tech-tag">Seaborn</span>
-                </div>
-                <a href="https://github.com/AhmedDataSC/Autoviz" class="btn" target="_blank">
-                    <i class="fab fa-github"></i> View Project
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Technical Expertise</h2>
-        <div class="skills-chart">
-            <div class="skill-item">
-                <h3>Machine Learning</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%;"></div>
-                </div>
-                <p>Scikit-learn • TensorFlow • XGBoost</p>
-            </div>
-            
-            <div class="skill-item">
-                <h3>Data Analysis</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%;"></div>
-                </div>
-                <p>Pandas • SQL • Power BI</p>
-            </div>
-            
-            <div class="skill-item">
-                <h3>Programming</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 95%;"></div>
-                </div>
-                <p>Python • R • JavaScript</p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle i');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                themeToggle.className = 'fas fa-moon';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.className = 'fas fa-sun';
-            }
-        }
-
-        // Scroll Animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
-            });
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+            <li><a href="#
