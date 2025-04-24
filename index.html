@@ -37,7 +37,6 @@
             min-height: 100vh;
         }
 
-        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
             top: 1rem;
@@ -153,6 +152,25 @@
             margin-top: 4rem;
         }
 
+        .tech-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.3rem;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0.3rem;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .hero-section {
                 padding: 6rem 1rem 1rem;
@@ -195,7 +213,9 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -225,6 +245,23 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills" style="padding: 2rem 1rem;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Technical Skills</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; padding: 1rem;">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">Pandas/Numpy</div>
+                <div class="skill-tag">Machine Learning</div>
+                <div class="skill-tag">Data Visualization</div>
+                <div class="skill-tag">SQL</div>
+                <div class="skill-tag">Excel</div>
+                <div class="skill-tag">Statistics</div>
+                <div class="skill-tag">Power BI</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" style="padding: 2rem 1rem;">
         <h2 style="text-align: center; margin-bottom: 1.5rem;">Data Science Projects</h2>
@@ -244,6 +281,45 @@
                     <i class="fab fa-github"></i> View Project
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" style="padding: 2rem 1rem;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Certifications (2025)</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Professional Data Scientist</h3>
+                <p>Coursera | 2025</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Generative AI Specialist</h3>
+                <p>Coursera | 2025</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-tag">LLMs</span>
+                    <span class="tech-tag">Neural Networks</span>
+                    <span class="tech-tag">TensorFlow</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Switch Section -->
+    <section style="padding: 2rem 1rem; max-width: 800px; margin: 2rem auto;">
+        <div class="project-card" style="text-align: center;">
+            <h3>Why Data Science?</h3>
+            <p style="margin: 1rem 0; line-height: 1.7;">
+                Transitioning from accounting to Data Science & AI, I bring unique perspective in financial data analysis 
+                combined with cutting-edge technical skills. My experience at KPMG fueled my passion for data-driven 
+                decision making, leading me to pursue machine learning and AI to solve complex business challenges 
+                through predictive analytics and intelligent automation.
+            </p>
         </div>
     </section>
 
