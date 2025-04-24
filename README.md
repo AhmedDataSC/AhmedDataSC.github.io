@@ -6,181 +6,194 @@
     <title>Ahmed Raza Ansari | Data Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #f8f9fa;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav {
-            background: #2c3e50;
+            background: var(--primary-color);
             padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 1rem;
             padding: 0.5rem 1rem;
             border-radius: 4px;
-            transition: 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover {
-            background: #3498db;
+            background: var(--secondary-color);
         }
 
         .section {
-            padding: 6rem 1.5rem 2rem;
+            padding: 8rem 1.5rem 4rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        h1, h2, h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-        }
-
-        .profile {
+        .hero {
             text-align: center;
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
 
         .profile-photo {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 4px solid #2c3e50;
-            margin-bottom: 1.5rem;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 2rem;
             object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
         .project-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .skills-grid {
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-color);
+        }
+
+        .skills-chart {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
-        .skill-card {
-            background: white;
+        .skill-item {
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem 0;
+        .skill-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
         }
 
-        .certification-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .skill-progress {
+            height: 100%;
+            background: var(--secondary-color);
+            width: 0;
+            transition: width 1s ease-in-out;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.5rem;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin: 0.5rem 0;
-            transition: 0.3s;
-            font-size: 0.9rem;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            padding: 2rem 0;
+        .section > * {
+            animation: fadeIn 0.6s ease forwards;
         }
 
         @media (max-width: 768px) {
             .section {
-                padding: 5rem 1rem 1rem;
+                padding: 6rem 1rem 2rem;
             }
 
             nav ul {
-                gap: 0.8rem;
-            }
-
-            nav a {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+                gap: 1rem;
             }
 
             .profile-photo {
-                width: 140px;
-                height: 140px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .project-grid,
-            .certifications-grid {
-                grid-template-columns: 1fr;
+                width: 160px;
+                height: 160px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -191,94 +204,119 @@
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="section">
-        <div class="profile">
-            <img src="ahmed-photo.jpg" alt="Ahmed Raza Ansari" class="profile-photo">
-            <h1>Ahmed Raza Ansari</h1>
-            <p>Data Science Professional | AI Enthusiast</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn">View Projects</a>
-                <a href="#contact" class="btn">Contact Me</a>
+        <div class="hero">
+            <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Ahmed Raza Ansari</h1>
+            <p style="font-size: 1.2rem; color: var(--secondary-color);">Data Scientist | AI Developer</p>
+            <div style="margin-top: 2rem;">
+                <a href="#projects" class="btn" style="background: var(--secondary-color);">View Projects</a>
+                <a href="#contact" class="btn" style="background: var(--primary-color);">Contact Me</a>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="section">
-        <h2>Featured Projects</h2>
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Featured Projects</h2>
         <div class="project-grid">
+            <!-- Advanced House Price Prediction -->
             <div class="project-card">
-                <h3>Customer Churn Prediction</h3>
-                <p>Built ML model with 92% accuracy using Python and Scikit-learn</p>
-                <a href="https://github.com/AhmedDataSC/churn-prediction" class="btn" target="_blank">
-                    <i class="fab fa-github"></i> View Code
+                <h3>Advanced House Price Prediction</h3>
+                <p style="margin: 1rem 0; color: #666;">Machine learning model predicting real estate prices with 95% accuracy</p>
+                <div style="margin: 1.5rem 0;">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">EDA</span>
+                </div>
+                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" class="btn" target="_blank">
+                    <i class="fab fa-github"></i> Explore Code
                 </a>
             </div>
+
+            <!-- Autoviz -->
             <div class="project-card">
-                <h3>Sales Analytics Dashboard</h3>
-                <p>Interactive Tableau dashboard for sales trend analysis</p>
-                <a href="https://github.com/AhmedDataSC/sales-analytics" class="btn" target="_blank">
+                <h3>Autoviz</h3>
+                <p style="margin: 1rem 0; color: #666;">Automated data visualization tool for rapid EDA</p>
+                <div style="margin: 1.5rem 0;">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Matplotlib</span>
+                    <span class="tech-tag">Seaborn</span>
+                </div>
+                <a href="https://github.com/AhmedDataSC/Autoviz" class="btn" target="_blank">
                     <i class="fab fa-github"></i> View Project
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills" class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Data Science</h3>
-                <p>Pandas • NumPy • Scikit-learn</p>
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Technical Expertise</h2>
+        <div class="skills-chart">
+            <div class="skill-item">
+                <h3>Machine Learning</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+                <p>Scikit-learn • TensorFlow • XGBoost</p>
             </div>
-            <div class="skill-card">
+            
+            <div class="skill-item">
+                <h3>Data Analysis</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+                <p>Pandas • SQL • Power BI</p>
+            </div>
+            
+            <div class="skill-item">
                 <h3>Programming</h3>
-                <p>Python • SQL • R</p>
-            </div>
-            <div class="skill-card">
-                <h3>AI/ML</h3>
-                <p>TensorFlow • Generative AI • NLP</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="section">
-        <h2>Certifications (2025)</h2>
-        <div class="certifications-grid">
-            <div class="certification-card">
-                <h3>Advanced Data Science</h3>
-                <p>Coursera • 2025</p>
-                <a href="#" class="btn">View Credential</a>
-            </div>
-            <div class="certification-card">
-                <h3>Python Programming</h3>
-                <p>Coursera • 2025</p>
-                <a href="#" class="btn">View Credential</a>
-            </div>
-            <div class="certification-card">
-                <h3>Generative AI</h3>
-                <p>Coursera • 2025</p>
-                <a href="#" class="btn">View Credential</a>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%;"></div>
+                </div>
+                <p>Python • R • JavaScript</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <h2>Let's Connect</h2>
-        <div class="contact-links">
-            <a href="mailto:ahmed.ansari@example.com" class="btn">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-            <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" class="btn" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/AhmedDataSC" class="btn" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-    </section>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+            }
+        }
 
-    <footer style="background: #2c3e50; color: white; text-align: center; padding: 1rem;">
-        <p>© 2025 Ahmed Raza Ansari. All rights reserved.</p>
-    </footer>
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
