@@ -63,8 +63,9 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             flex-wrap: wrap;
+            padding: 0;
         }
 
         nav a {
@@ -72,17 +73,17 @@
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 4px;
+            font-size: 0.9rem;
         }
 
         .hero-section {
-            padding: 10rem 1rem 2rem;
+            padding: 8rem 1rem 2rem;
             text-align: center;
         }
 
         .profile-container {
-            position: relative;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto 2rem;
             border-radius: 50%;
             border: 4px solid var(--primary-color);
@@ -101,31 +102,37 @@
             object-fit: cover;
         }
 
-        .education-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--secondary-color);
-        }
-
         .experience-card {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: 1.5rem;
             margin: 2rem auto;
             max-width: 800px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--secondary-color);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .contact-icons {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
 
         .contact-icons a {
@@ -142,8 +149,38 @@
             background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 1rem 1rem;
+            }
+
+            .profile-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .experience-card {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                padding: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -157,7 +194,6 @@
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#education">Education</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -170,58 +206,41 @@
             <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
         </div>
         <h1>Ahmed Raza Ansari</h1>
-        <p>Data Science Fresh Graduate | Seeking Opportunities</p>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="education-card">
-            <h2>Education</h2>
-            <div style="margin-top: 1.5rem;">
-                <h3>NED University of Engineering & Technology</h3>
-                <p>Bachelor's in Data Science & Artificial Intelligence</p>
-                <p>2022 - Present (Currently Enrolled)</p>
-                
-                <h3 style="margin-top: 1.5rem;">University of Karachi</h3>
-                <p>Bachelor of Commerce (B.Com)</p>
-                <p>2019 - 2021</p>
-            </div>
-        </div>
+        <p>Aspiring Data Scientist | Accounts Officer @ KPMG (Since Aug 2023)</p>
     </section>
 
     <!-- Experience Section -->
     <section id="experience">
         <div class="experience-card">
             <h2>Professional Experience</h2>
-            <div style="margin-top: 1.5rem;">
+            <div style="margin-top: 1rem;">
                 <h3>KPMG Pakistan</h3>
-                <p>Current Position: [Your Current Role]</p>
-                <p>Key Responsibilities:</p>
-                <ul>
-                    <li>Data analysis and reporting</li>
-                    <li>Financial modeling</li>
-                    <li>Business intelligence tasks</li>
+                <p>Accounts Officer (August 2023 - Present)</p>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li>Financial data analysis and reporting</li>
+                    <li>Accounts payable/receivable management</li>
+                    <li>Budget monitoring and forecasting</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" style="padding: 2rem;">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Data Science Projects</h2>
-        <div style="max-width: 1000px; margin: 0 auto;">
+    <section id="projects" style="padding: 2rem 1rem;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Data Science Projects</h2>
+        <div class="project-grid">
             <div class="project-card">
                 <h3>Advanced House Price Prediction</h3>
-                <p>Regression model achieving 95% accuracy using ensemble methods</p>
-                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" target="_blank">
+                <p>Machine learning model with 95% accuracy</p>
+                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" target="_blank" style="display: inline-block; margin-top: 1rem;">
                     <i class="fab fa-github"></i> View Code
                 </a>
             </div>
             
-            <div class="project-card" style="margin-top: 1.5rem;">
-                <h3>Autoviz Automation Tool</h3>
-                <p>Automated EDA tool for quick data visualization</p>
-                <a href="https://github.com/AhmedDataSC/Autoviz" target="_blank">
+            <div class="project-card">
+                <h3>Autoviz Automation</h3>
+                <p>Automated EDA visualization tool</p>
+                <a href="https://github.com/AhmedDataSC/Autoviz" target="_blank" style="display: inline-block; margin-top: 1rem;">
                     <i class="fab fa-github"></i> View Project
                 </a>
             </div>
@@ -229,8 +248,8 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="text-align: center; padding: 4rem 1rem;">
-        <h2>Let's Connect</h2>
+    <section id="contact" style="text-align: center; padding: 2rem 1rem;">
+        <h2>Connect With Me</h2>
         <div class="contact-icons">
             <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" target="_blank">
                 <i class="fab fa-linkedin"></i>
@@ -238,34 +257,38 @@
             <a href="https://github.com/AhmedDataSC" target="_blank">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:youremail@example.com">
                 <i class="fas fa-envelope"></i>
-            </a>
-        </div>
-        <div style="margin-top: 2rem;">
-            <a href="your-resume.pdf" download class="btn">
-                <i class="fas fa-download"></i> Download Resume
             </a>
         </div>
     </section>
 
     <footer>
-        <p>© 2024 Ahmed Raza Ansari | Seeking Data Science Opportunities</p>
+        <p>© 2024 Ahmed Raza Ansari | Open for Data Science Opportunities</p>
     </footer>
 
     <script>
         // Dark/Light Mode Toggle
         function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            localStorage.setItem('theme', 
-                document.body.classList.contains('dark-theme') ? 'dark' : 'light'
-            );
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+            }
+            
+            localStorage.setItem('theme', body.getAttribute('data-theme') || 'light');
         }
 
         // Apply saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
-            document.body.classList.add('dark-theme');
+            document.body.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
         }
 
         // Smooth Scroll
