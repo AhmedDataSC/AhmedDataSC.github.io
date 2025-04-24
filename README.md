@@ -1,124 +1,97 @@
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Github, Linkedin } from "lucide-react";
 
-    <!-- Hero Section -->
-    <section id="home" class="section">
-        <div class="hero">
-            <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
-            <h1>Ahmed Raza Ansari</h1>
-            <p>Data Scientist | Machine Learning Engineer</p>
-            <div style="margin-top: 2rem;">
-                <a href="#projects" class="btn">View Projects</a>
-                <a href="#contact" class="btn">Contact Me</a>
-            </div>
+export default function Portfolio() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [repos, setRepos] = useState([]);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Message sent! (This is a placeholder.)");
+  };
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/AhmedDataSC/repos")
+      .then(res => res.json())
+      .then(data => setRepos(data.slice(0, 4))) // Get top 4 repos
+      .catch(err => console.error(err));
+  }, []);
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 space-y-12">
+      {/* Hero Section */}
+      <section className="text-center space-y-4">
+        <img src="https://avatars.githubusercontent.com/u/138542786?v=4" alt="Ahmed Raza Ansari" className="w-32 h-32 mx-auto rounded-full shadow-md" />
+        <h1 className="text-4xl font-bold">Hi, I'm Ahmed Raza Ansari</h1>
+        <p className="text-xl text-gray-600">Data Scientist | ML Enthusiast | Problem Solver</p>
+        <div className="flex justify-center space-x-4">
+          <a href="mailto:raza123info@gmail.com"><Mail /></a>
+          <a href="https://github.com/AhmedDataSC" target="_blank"><Github /></a>
+          <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" target="_blank"><Linkedin /></a>
         </div>
-    </section>
+      </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <h2>Featured Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <h3>Advanced House Price Prediction</h3>
-                <p>Machine learning model with 95% accuracy using advanced regression techniques</p>
-                <div style="margin: 1rem 0;">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">Pandas</span>
-                </div>
-                <a href="https://github.com/AhmedDataSC/Advanced-House-Price-Prediction" class="btn" target="_blank">
-                    <i class="fab fa-github"></i> View Project
-                </a>
-            </div>
+      {/* About Me */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">About Me</h2>
+        <p className="text-gray-700">
+          I’m Ahmed Raza Ansari, a passionate data scientist with a BCom from Sindh University of Jamshoro (2021),
+          currently pursuing Data Science and Artificial Intelligence at NED University of Karachi. I leverage data
+          to uncover insights and solve real-world problems.
+        </p>
+      </section>
 
-            <div class="project-card">
-                <h3>Autoviz</h3>
-                <p>Automated data visualization system for exploratory data analysis</p>
-                <div style="margin: 1rem 0;">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Matplotlib</span>
-                    <span class="tech-tag">Seaborn</span>
-                </div>
-                <a href="https://github.com/AhmedDataSC/Autoviz" class="btn" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
+      {/* Projects */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Projects</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          {repos.map(repo => (
+            <Card key={repo.id}>
+              <CardContent className="p-4">
+                <h3 className="font-bold text-lg">{repo.name}</h3>
+                <p className="text-sm text-gray-600">{repo.description || "No description provided."}</p>
+                <a href={repo.html_url} target="_blank" className="text-blue-600 text-sm">View on GitHub</a>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-    </section>
+      </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="section">
-        <h2>Certifications</h2>
-        <div class="certifications-grid">
-            <div class="certification-card">
-                <h3>Data Science Professional</h3>
-                <p>Coursera | 2025</p>
-                <div class="btn">View Credential</div>
-            </div>
-            <div class="certification-card">
-                <h3>Advanced Python</h3>
-                <p>Coursera | 2025</p>
-                <div class="btn">View Credential</div>
-            </div>
-            <div class="certification-card">
-                <h3>Generative AI</h3>
-                <p>Coursera | 2025</p>
-                <div class="btn">View Credential</div>
-            </div>
-        </div>
-    </section>
+      {/* Skills */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">Skills</h2>
+        <p className="text-gray-700">
+          Python, SQL, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, TensorFlow, Power BI, Tableau
+        </p>
+      </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2>Contact Me</h2>
-        <div class="contact-links">
-            <a href="mailto:ahmed.ansari@example.com" class="btn">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-            <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" class="btn" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/AhmedDataSC" class="btn" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-    </section>
+      {/* Resume */}
+      <section className="text-center">
+        <Button asChild>
+          <a href="/resume.pdf" download>
+            Download Resume
+          </a>
+        </Button>
+      </section>
 
-    <!-- Fixed Footer -->
-    <footer>
-        <p>© 2025 Ahmed Raza Ansari. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle i');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                themeToggle.className = 'fas fa-moon';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.className = 'fas fa-sun';
-            }
-        }
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+      {/* Contact */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Contact Me</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input name="name" placeholder="Your Name" value={form.name} onChange={handleChange} required />
+          <Input name="email" placeholder="Your Email" value={form.email} onChange={handleChange} required />
+          <Textarea name="message" placeholder="Your Message" value={form.message} onChange={handleChange} required />
+          <Button type="submit">Send Message</Button>
+        </form>
+      </section>
+    </div>
+  );
+}
