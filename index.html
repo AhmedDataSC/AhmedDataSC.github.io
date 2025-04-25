@@ -1,38 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Previous head content remains the same -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Raza Ansari | Data Scientist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Add to existing styles */
-        .internship-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--secondary-color);
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #f8f9fa;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--primary-color), 0.95);
+            padding: 1rem;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 1rem 6rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 1rem;
+            margin-top: 2rem;
+            color: white;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 2rem auto;
+            box-shadow: var(--box-shadow);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
             position: relative;
         }
 
-        .internship-duration {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 0.5rem auto;
         }
 
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-color);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Internships */
         .company-logo {
             width: 60px;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            opacity: 0.8;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .internship-duration {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Projects */
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background: rgba(var(--secondary-color), 0.1);
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 4rem 1rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .hero {
+                padding: 8rem 1rem 4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <nav class="nav-container">
+            <h2 style="color: white;">Ahmed Raza Ansari</h2>
             <ul class="nav-links">
-                <!-- Updated navigation -->
                 <li><a class="nav-link" href="#home">Home</a></li>
                 <li><a class="nav-link" href="#about">About</a></li>
                 <li><a class="nav-link" href="#certifications">Certifications</a></li>
@@ -43,81 +265,138 @@
         </nav>
     </header>
 
-    <!-- Add this new section after Certifications -->
-    <section id="internships" class="section">
-        <h2 class="section-title">Professional Internships</h2>
-        <div class="certification-grid">
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="DataCamp" class="company-logo">
-                <h3>Data Science Intern</h3>
-                <p class="internship-duration">Jan 2024 - Mar 2024</p>
-                <p>DataCamp · Remote</p>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li>Performed EDA on large datasets using Python and SQL</li>
-                    <li>Developed predictive models with 85% accuracy</li>
-                    <li>Created interactive dashboards using Tableau</li>
-                </ul>
-                <a href="path/to/datacamp-cert.pdf" class="btn" target="_blank">View Certification</a>
-            </div>
+    <section id="home" class="hero">
+        <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-img">
+        <h1>Ahmed Raza Ansari</h1>
+        <p class="tagline">Transforming Data into Intelligent Solutions</p>
+    </section>
 
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969049.png" alt="IBM" class="company-logo">
-                <h3>AI Engineering Intern</h3>
-                <p class="internship-duration">Apr 2024 - Jun 2024</p>
-                <p>IBM · Remote</p>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li>Implemented NLP models for text classification</li>
-                    <li>Optimized deep learning model performance by 30%</li>
-                    <li>Developed chatbot using Watson Assistant</li>
-                </ul>
-                <a href="path/to/ibm-cert.pdf" class="btn" target="_blank">View Certification</a>
-            </div>
-
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/6033/6033716.png" alt="AWS" class="company-logo">
-                <h3>Cloud AI Intern</h3>
-                <p class="internship-duration">Jul 2024 - Sep 2024</p>
-                <p>Amazon Web Services · Remote</p>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li>Deployed ML models on AWS SageMaker</li>
-                    <li>Implemented serverless AI solutions</li>
-                    <li>Optimized cloud infrastructure costs by 25%</li>
-                </ul>
-                <a href="path/to/aws-intern-cert.pdf" class="btn" target="_blank">View Certification</a>
-            </div>
-
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Microsoft" class="company-logo">
-                <h3>ML Research Intern</h3>
-                <p class="internship-duration">Oct 2024 - Dec 2024</p>
-                <p>Microsoft · Remote</p>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li>Researched transformer architectures</li>
-                    <li>Contributed to open-source ML frameworks</li>
-                    <li>Published paper on model optimization</li>
-                </ul>
-                <a href="path/to/microsoft-cert.pdf" class="btn" target="_blank">View Certification</a>
-            </div>
-
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="DeepLearning" class="company-logo">
-                <h3>GenAI Intern</h3>
-                <p class="internship-duration">Jan 2025 - Mar 2025</p>
-                <p>DeepLearning.AI · Remote</p>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li>Developed generative models using GANs</li>
-                    <li>Created content generation pipelines</li>
-                    <li>Optimized LLM performance</li>
-                </ul>
-                <a href="path/to/dlai-cert.pdf" class="btn" target="_blank">View Certification</a>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="card">
+            <p>Data Scientist with expertise in machine learning and AI solutions. Transitioned from accounting to tech, bringing unique perspective to data analysis. Certified in multiple AI/ML specializations with hands-on experience in:</p>
+            <div class="project-tags" style="margin-top: 1.5rem;">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Natural Language Processing</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Cloud Computing</span>
             </div>
         </div>
     </section>
 
-    <!-- Previous sections remain unchanged -->
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="card-grid">
+            <!-- Certification Cards Here -->
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section id="internships" class="section">
+        <h2 class="section-title">Internships</h2>
+        <div class="card-grid">
+            <!-- Internship Cards Here -->
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Projects</h2>
+        <div class="card-grid" id="projectsContainer"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <h3 class="section-title" style="color: white;">Let's Connect</h3>
+        <div class="social-links">
+            <a href="https://github.com/AhmedDataSC" class="social-link">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/ahmed-raza-ansari-b442a2221" class="social-link">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:raza.admission@gmail.com" class="social-link">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.8;">© 2024 Ahmed Raza Ansari. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Previous JavaScript remains unchanged
+        // Improved JavaScript with animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.card').forEach((card) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease-out';
+                observer.observe(card);
+            });
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(var(--primary-color), 0.98)';
+                } else {
+                    header.style.background = 'rgba(var(--primary-color), 0.95)';
+                }
+            });
+        });
+
+        async function loadProjects() {
+            try {
+                const response = await fetch('https://api.github.com/users/AhmedDataSC/repos');
+                const repos = await response.json();
+                const container = document.getElementById('projectsContainer');
+                
+                const filteredRepos = repos.filter(repo => 
+                    !repo.fork && 
+                    repo.name !== 'AhmedDataSC.github.io'
+                ).sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+                filteredRepos.forEach(repo => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'card';
+                    projectCard.innerHTML = `
+                        <h3>${repo.name}</h3>
+                        <p>${repo.description || 'No description available'}</p>
+                        <div class="project-tags">
+                            <span class="tag">${repo.language || 'Various'}</span>
+                        </div>
+                        <a href="${repo.html_url}" class="btn" target="_blank">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    `;
+                    container.appendChild(projectCard);
+                });
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+        loadProjects();
     </script>
 </body>
 </html>
