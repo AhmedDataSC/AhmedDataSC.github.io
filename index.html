@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-        }
-
-        [data-theme="dark"] {
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
-            --text-color: #f8f9fa;
+            --text-color: #ecf0f1;
             --bg-color: #1a1a1a;
             --card-bg: #2d2d2d;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #2c3e50;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -30,253 +30,243 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
 
-        /* Header Navigation */
-        .header-nav {
+        /* Navigation */
+        .nav-container {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--primary-color);
-            padding: 1rem;
+            background: var(--secondary-color);
             z-index: 1000;
+            padding: 1rem;
+        }
+
+        .nav-items {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-        }
-
-        .nav-icon {
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-icon:hover {
-            transform: scale(1.2);
-        }
-
-        /* Page Sections */
-        .page-section {
-            display: none;
-            padding: 6rem 1rem 2rem;
-            min-height: 100vh;
-        }
-
-        .active-page {
-            display: block;
-        }
-
-        /* Home Page Layout */
-        .home-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 1rem 4rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            border: 4px solid var(--primary-color);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .profile-section {
+        .section-title {
             text-align: center;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideIn 1s forwards;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
         }
 
-        .profile-photo {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .contact-section {
-            opacity: 0;
-            transform: translateX(50px);
-            animation: slideIn 1s 0.3s forwards;
-        }
-
-        .internship-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Projects Page */
+        /* Projects Grid */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 2rem;
         }
 
-        /* Certifications Page */
-        .certification-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .certification-card {
+        .project-card {
             background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* Skills Page */
+        /* Skills Cloud */
         .skills-cloud {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .skill-tag {
-            background: var(--secondary-color);
+            background: var(--primary-color);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
         }
 
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s;
+        }
+
+        [data-animate="visible"] {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 768px) {
-            .home-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
+            .nav-items {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
             
-            .profile-photo {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .header-nav {
-                gap: 1.5rem;
-                padding: 0.5rem;
+            .profile-img {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <nav class="header-nav">
-        <i class="nav-icon fas fa-home" onclick="showPage('home')"></i>
-        <i class="nav-icon fas fa-project-diagram" onclick="showPage('projects')"></i>
-        <i class="nav-icon fas fa-certificate" onclick="showPage('certifications')"></i>
-        <i class="nav-icon fas fa-code" onclick="showPage('skills')"></i>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <ul class="nav-items">
+            <li><a class="nav-link" href="#home">Home</a></li>
+            <li><a class="nav-link" href="#projects">Projects</a></li>
+            <li><a class="nav-link" href="#skills">Skills</a></li>
+            <li><a class="nav-link" href="#certifications">Certifications</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Home Page -->
-    <section id="home" class="page-section active-page">
-        <div class="home-grid">
-            <div class="profile-section">
-                <img src="https://github.com/AhmedDataSC.png" alt="Profile" class="profile-photo">
-                <div class="contact-section">
-                    <h2>Contact</h2>
-                    <div style="margin: 1rem 0;">
-                        <a href="https://github.com/AhmedDataSC" target="_blank" class="skill-tag">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/ahmed-raza-ansari-b442a2221" target="_blank" class="skill-tag">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="mailto:raza.admission@gmail.com" class="skill-tag">
-                            <i class="fas fa-envelope"></i> Email
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2>About Me</h2>
-                <p style="margin: 1rem 0;">
-                    Passionate data science professional transitioning from accounting to AI/ML. 
-                    My experience at KPMG ignited my fascination with data-driven decision making, 
-                    leading me to pursue advanced certifications in machine learning and AI. 
-                    Special interest in generative AI and predictive analytics.
-                </p>
-                
-                <div class="internship-card">
-                    <h3>Virtual Internships</h3>
-                    <div style="margin-top: 1rem;">
-                        <a href="path/to/internship1.pdf" class="skill-tag" target="_blank">
-                            <i class="fas fa-file-pdf"></i> JPMorgan Data Science
-                        </a>
-                        <a href="path/to/internship2.pdf" class="skill-tag" target="_blank">
-                            <i class="fas fa-file-pdf"></i> AWS AI Internship
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-img">
+        <h1 data-animate>Ahmed Raza Ansari</h1>
+        <p data-animate style="font-size: 1.2rem; margin: 1rem 0;">
+            Accountant turned Data Scientist | Passionate about AI & Analytics
+        </p>
+        <div data-animate style="margin-top: 2rem;">
+            <a href="#projects" class="skill-tag" style="background: var(--secondary-color);">
+                View Projects
+            </a>
+            <a href="path/to/resume.pdf" download class="skill-tag">
+                Download Resume
+            </a>
         </div>
     </section>
 
-    <!-- Projects Page -->
-    <section id="projects" class="page-section">
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title" data-animate>Projects</h2>
         <div class="project-grid" id="projectsContainer"></div>
     </section>
 
-    <!-- Certifications Page -->
-    <section id="certifications" class="page-section">
-        <div class="certification-grid">
-            <!-- Add certification cards -->
-            <div class="certification-card">
-                <h3>IBM Data Science</h3>
-                <a href="path/to/ibm-cert.pdf" target="_blank" class="skill-tag">
-                    <i class="fas fa-certificate"></i> View PDF
-                </a>
-            </div>
-            <!-- Add other certification cards similarly -->
-        </div>
-    </section>
-
-    <!-- Skills Page -->
-    <section id="skills" class="page-section">
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title" data-animate>Technical Skills</h2>
         <div class="skills-cloud">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">Machine Learning</span>
             <span class="skill-tag">Deep Learning</span>
             <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">Data Analysis</span>
             <span class="skill-tag">SQL</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Generative AI</span>
-            <span class="skill-tag">NLP</span>
-            <span class="skill-tag">Computer Vision</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
             <span class="skill-tag">Tableau</span>
-            <span class="skill-tag">Data Engineering</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Git</span>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <h2 class="section-title" data-animate>Certifications</h2>
+        <div class="project-grid">
+            <div class="project-card" data-animate>
+                <h3>IBM Data Science Professional</h3>
+                <a href="path/to/ibm-cert.pdf" class="skill-tag" target="_blank">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+            <!-- Add other certifications similarly -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title" data-animate>Contact</h2>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <div class="skills-cloud" data-animate>
+                <a href="https://github.com/AhmedDataSC" class="skill-tag" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/ahmed-raza-ansari-b442a2221" class="skill-tag" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:raza.admission@gmail.com" class="skill-tag">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
         </div>
     </section>
 
     <script>
-        // Page Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(page => {
-                page.classList.remove('active-page');
-            });
-            document.getElementById(pageId).classList.add('active-page');
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.setAttribute('data-theme',
+                document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
+            );
+            localStorage.setItem('theme', document.body.getAttribute('data-theme'));
         }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
 
         // Load GitHub Projects
         async function loadProjects() {
@@ -285,22 +275,36 @@
                 const repos = await response.json();
                 const container = document.getElementById('projectsContainer');
                 
-                repos.forEach(repo => {
-                    const projectCard = document.createElement('div');
-                    projectCard.className = 'internship-card';
-                    projectCard.innerHTML = `
+                repos.filter(repo => !repo.fork).forEach(repo => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
                         <h3>${repo.name}</h3>
                         <p>${repo.description || ''}</p>
-                        <a href="${repo.html_url}" target="_blank" class="skill-tag">
-                            <i class="fab fa-github"></i> View Repository
-                        </a>
+                        <div class="skills-cloud" style="margin-top: 1rem;">
+                            ${repo.language ? `<span class="skill-tag">${repo.language}</span>` : ''}
+                            <a href="${repo.html_url}" class="skill-tag" target="_blank">
+                                <i class="fab fa-github"></i> View
+                            </a>
+                        </div>
                     `;
-                    container.appendChild(projectCard);
+                    container.appendChild(card);
                 });
             } catch (error) {
                 console.error('Error loading projects:', error);
             }
         }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.setAttribute('data-animate', 'visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
         // Initialize
         window.addEventListener('DOMContentLoaded', () => {
