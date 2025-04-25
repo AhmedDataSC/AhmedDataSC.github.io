@@ -120,7 +120,7 @@
             margin: 0 auto;
         }
 
-        .project-card {
+        .project-card, .repo-card {
             background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
@@ -171,6 +171,27 @@
             font-size: 0.9rem;
         }
 
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .repo-language {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .repo-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
         @media (max-width: 768px) {
             .hero-section {
                 padding: 6rem 1rem 1rem;
@@ -216,6 +237,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#github">GitHub</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -264,7 +286,7 @@
 
     <!-- Projects Section -->
     <section id="projects" style="padding: 2rem 1rem;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Data Science Projects</h2>
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Featured Projects</h2>
         <div class="project-grid">
             <div class="project-card">
                 <h3>Advanced House Price Prediction</h3>
@@ -308,6 +330,12 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- GitHub Repos Section -->
+    <section id="github" style="padding: 2rem 1rem;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">GitHub Projects</h2>
+        <div class="project-grid" id="githubRepos"></div>
     </section>
 
     <!-- Career Switch Section -->
@@ -376,6 +404,68 @@
                 });
             });
         });
+
+        // GitHub Repos Loader
+        async function loadGitHubRepos() {
+            try {
+                const response = await fetch('https://api.github.com/users/AhmedDataSC/repos');
+                const repos = await response.json();
+                
+                const filteredRepos = repos.filter(repo => 
+                    !repo.fork && 
+                    !['AhmedDataSC.github.io'].includes(repo.name)
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+                const container = document.getElementById('githubRepos');
+                
+                filteredRepos.forEach(repo => {
+                    const repoCard = document.createElement('div');
+                    repoCard.className = 'repo-card';
+                    repoCard.innerHTML = `
+                        <div>
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'No description available'}</p>
+                        </div>
+                        <div class="repo-footer">
+                            <div class="repo-stats">
+                                ${repo.language ? `
+                                <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                    <span class="repo-language" style="background-color: ${getLanguageColor(repo.language)};"></span>
+                                    ${repo.language}
+                                </div>` : ''}
+                                <div>
+                                    <i class="fas fa-star"></i> ${repo.stargazers_count}
+                                </div>
+                            </div>
+                            <a href="${repo.html_url}" target="_blank" class="btn">
+                                <i class="fab fa-github"></i> View
+                            </a>
+                        </div>
+                    `;
+                    container.appendChild(repoCard);
+                });
+
+            } catch (error) {
+                console.error('Error loading GitHub repos:', error);
+                document.getElementById('githubRepos').innerHTML = 
+                    '<p>Failed to load GitHub repositories. Visit my <a href="https://github.com/AhmedDataSC" target="_blank">GitHub profile</a>.</p>';
+            }
+        }
+
+        // Language color mapping
+        function getLanguageColor(language) {
+            const colors = {
+                'Python': '#3572A5',
+                'Jupyter Notebook': '#DA5B0B',
+                'JavaScript': '#f1e05a',
+                'HTML': '#e34c26',
+                'CSS': '#563d7c'
+            };
+            return colors[language] || '#cccccc';
+        }
+
+        // Load GitHub repos when page loads
+        window.addEventListener('DOMContentLoaded', loadGitHubRepos);
     </script>
 </body>
 </html>
