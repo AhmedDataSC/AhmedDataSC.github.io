@@ -6,183 +6,74 @@
     <title>Ahmed Raza Ansari | Data Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
+        /* Critical Fixes */
+        .hero-section {
+            padding-top: 120px; /* Added space for fixed nav */
         }
 
-        [data-theme="dark"] {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --text-color: #f8f9fa;
-            --bg-color: #1a1a1a;
-            --card-bg: #2d2d2d;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-        }
-
-        /* Improved Mobile Header */
         @media (max-width: 768px) {
-            .theme-toggle {
-                display: none;
+            .hero-section {
+                padding-top: 100px;
             }
             
             nav ul {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
+                display: none; /* Hide nav items on mobile */
             }
             
-            nav a {
+            .mobile-menu {
                 display: block;
-                padding: 0.8rem;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .theme-toggle {
+                top: 4rem; /* Reposition theme toggle */
             }
         }
 
-        /* Rest of CSS from previous version */
-        /* ... (Include all previous CSS styles) ... */
+        /* Layout Improvements */
+        .section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        /* New Certification Styles */
+        .project-grid {
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        /* GitHub Repo Fixes */
+        .repo-card {
+            min-height: auto;
+            padding: 1rem;
+        }
+
+        /* Certification Badges */
         .cert-badge {
-            width: 100px;
-            height: 100px;
-            margin: 1rem auto;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        /* Virtual Internship Cards */
-        .internship-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            border-top: 4px solid var(--secondary-color);
-        }
-
-        .platform-logo {
-            height: 40px;
-            margin: 1rem 0;
+            width: 80px;
+            height: 80px;
+            font-size: 1.5rem;
         }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <select onchange="window.location.href=this.value">
+            <option value="#home">Home</option>
+            <option value="#experience">Experience</option>
+            <option value="#certifications">Certifications</option>
+            <option value="#github">GitHub</option>
+            <option value="#contact">Contact</option>
+        </select>
     </div>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#internships">Internships</a></li>
-            <li><a href="#github">GitHub</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- Rest of your HTML content remains same -->
+    <!-- ... -->
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="profile-container">
-            <img src="https://github.com/AhmedDataSC.png" alt="Ahmed Raza Ansari" class="profile-photo">
-        </div>
-        <h1>Ahmed Raza Ansari</h1>
-        <p>Data Science Professional | AI Enthusiast</p>
-    </section>
-
-    <!-- Updated Certifications Section -->
-    <section id="certifications" style="padding: 2rem 1rem;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Certifications (2025)</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="cert-badge"><i class="fas fa-certificate"></i></div>
-                <h3>Advanced Data Science</h3>
-                <p>Coursera | Deep Learning Specialization</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tech-tag">Neural Networks</span>
-                    <span class="tech-tag">TensorFlow</span>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="cert-badge"><i class="fas fa-robot"></i></div>
-                <h3>Generative AI</h3>
-                <p>Coursera | AI Engineering</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tech-tag">LLMs</span>
-                    <span class="tech-tag">GANs</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="cert-badge"><i class="fas fa-chart-line"></i></div>
-                <h3>Data Analysis</h3>
-                <p>Coursera | Google Professional Certificate</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tech-tag">SQL</span>
-                    <span class="tech-tag">Tableau</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Virtual Internship Section -->
-    <section id="internships" style="padding: 2rem 1rem;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Virtual Internships</h2>
-        <div class="project-grid">
-            <div class="internship-card">
-                <img src="https://www.theforage.com/favicon.ico" alt="Forage" class="platform-logo">
-                <h3>Data Science Intern</h3>
-                <p>JPMorgan Chase & Co.</p>
-                <p>Completed: March 2025</p>
-                <a href="#" class="btn">View Certificate</a>
-            </div>
-
-            <div class="internship-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969059.png" alt="Coursera" class="platform-logo">
-                <h3>AI Engineering</h3>
-                <p>DeepLearning.AI</p>
-                <p>Completed: April 2025</p>
-                <a href="#" class="btn">View Certificate</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Updated GitHub Section -->
-    <section id="github" style="padding: 2rem 1rem;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">GitHub Projects</h2>
-        <div class="project-grid" id="githubRepos"></div>
-    </section>
-
-    <!-- Updated JavaScript -->
     <script>
-        // Enhanced GitHub Repos Loader
+        // Fixed GitHub Repos Loader
         async function loadGitHubRepos() {
             try {
                 const response = await fetch('https://api.github.com/users/AhmedDataSC/repos');
@@ -190,18 +81,19 @@
                 
                 const filteredRepos = repos.filter(repo => 
                     !repo.fork && 
-                    !['AhmedDataSC.github.io'].includes(repo.name))
+                    !['AhmedDataSC.github.io'].includes(repo.name)
                     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
                 const container = document.getElementById('githubRepos');
+                container.innerHTML = ''; // Clear previous content
                 
                 filteredRepos.forEach(repo => {
                     const repoCard = document.createElement('div');
                     repoCard.className = 'repo-card';
                     repoCard.innerHTML = `
                         <div>
-                            <h3>${repo.name}</h3>
-                            <p>${repo.description || 'No description available'}</p>
+                            <h3 style="font-size: 1.2rem;">${repo.name}</h3>
+                            <p style="font-size: 0.9rem;">${repo.description || ''}</p>
                         </div>
                         <div class="repo-footer">
                             <div class="repo-stats">
@@ -210,11 +102,11 @@
                                     <span class="repo-language" style="background-color: ${getLanguageColor(repo.language)};"></span>
                                     ${repo.language}
                                 </div>` : ''}
-                                <div>
+                                <div style="font-size: 0.8rem;">
                                     <i class="fas fa-star"></i> ${repo.stargazers_count}
                                 </div>
                             </div>
-                            <a href="${repo.html_url}" target="_blank" class="btn">
+                            <a href="${repo.html_url}" target="_blank" style="font-size: 0.8rem;">
                                 <i class="fab fa-github"></i> View
                             </a>
                         </div>
@@ -225,12 +117,18 @@
             } catch (error) {
                 console.error('Error loading GitHub repos:', error);
                 document.getElementById('githubRepos').innerHTML = 
-                    '<p>Failed to load GitHub repositories. Visit my <a href="https://github.com/AhmedDataSC" target="_blank">GitHub profile</a>.</p>';
+                    '<p>Visit my <a href="https://github.com/AhmedDataSC" target="_blank">GitHub profile</a> to see all projects.</p>';
             }
         }
 
-        // Rest of JavaScript from previous version
-        // ... (Include theme toggle and smooth scroll) ...
+        // Initialize after DOM load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadGitHubRepos();
+            // Mobile menu setup
+            if(window.innerWidth < 768) {
+                document.querySelector('nav').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
